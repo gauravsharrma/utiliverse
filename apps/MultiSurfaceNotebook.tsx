@@ -14,9 +14,10 @@ type Mode = 'ruled' | 'simple' | 'grid' | 'blank' | 'code' | 'sticky' | 'reading
 
 const MultiSurfaceNotebook: React.FC = () => {
   const [mode, setMode] = useState<Mode>('ruled');
+  const [fullScreen, setFullScreen] = useState(false);
   return (
-    <div className="space-y-4">
-      <div className="flex flex-wrap gap-2">
+    <div className={fullScreen ? 'fixed inset-0 z-50 bg-white p-4 overflow-auto space-y-4' : 'space-y-4'}>
+      <div className="flex flex-wrap gap-2 items-center">
         <button onClick={() => setMode('ruled')} className={`px-3 py-1 rounded ${mode==='ruled'?'bg-indigo-600 text-white':'bg-gray-200'}`}>Ruled</button>
         <button onClick={() => setMode('simple')} className={`px-3 py-1 rounded ${mode==='simple'?'bg-indigo-600 text-white':'bg-gray-200'}`}>Simple</button>
         <button onClick={() => setMode('grid')} className={`px-3 py-1 rounded ${mode==='grid'?'bg-indigo-600 text-white':'bg-gray-200'}`}>Grid</button>
@@ -24,6 +25,7 @@ const MultiSurfaceNotebook: React.FC = () => {
         <button onClick={() => setMode('code')} className={`px-3 py-1 rounded ${mode==='code'?'bg-indigo-600 text-white':'bg-gray-200'}`}>Code</button>
         <button onClick={() => setMode('sticky')} className={`px-3 py-1 rounded ${mode==='sticky'?'bg-indigo-600 text-white':'bg-gray-200'}`}>Sticky</button>
         <button onClick={() => setMode('reading')} className={`px-3 py-1 rounded ${mode==='reading'?'bg-indigo-600 text-white':'bg-gray-200'}`}>Read</button>
+        <button onClick={() => setFullScreen(f=>!f)} className="ml-auto px-3 py-1 border rounded">{fullScreen?'Exit':'Full Screen'}</button>
       </div>
       {mode==='ruled' && <RuledNotebook/>}
       {mode==='simple' && <SimpleNotes/>}
@@ -69,6 +71,8 @@ const RuledNotebook: React.FC = () => {
       <div className="flex flex-wrap gap-2 mb-2 text-sm">
         <select value={font} onChange={e=>setFont(e.target.value)} className="border p-1">
           <option value="serif">Serif</option>
+          <option value="Georgia">Georgia</option>
+          <option value="Merriweather">Merriweather</option>
           <option value="sans-serif">Sans</option>
           <option value="monospace">Mono</option>
         </select>
@@ -86,8 +90,16 @@ const RuledNotebook: React.FC = () => {
         ref={ref}
         onInput={onInput}
         contentEditable
-        style={{fontFamily:font,fontSize:size,color}}
-        className="min-h-[300px] p-4 border rounded focus:outline-none bg-[length:100%_24px] bg-[repeating-linear-gradient(to_bottom,transparent_0,transparent_23px,rgba(147,197,253,0.4)_24px)]"
+        style={{
+          fontFamily: font,
+          fontSize: size,
+          color,
+          lineHeight: `${size * 1.5}px`,
+          backgroundSize: `100% ${size * 1.5}px`,
+          backgroundPosition: `0 ${size * 1.5 - 2}px`,
+          backgroundImage: `repeating-linear-gradient(to_bottom,transparent 0,transparent ${size * 1.5 - 2}px,rgba(147,197,253,0.4) ${size * 1.5 - 2}px,rgba(147,197,253,0.4) ${size * 1.5}px)`
+        }}
+        className="min-h-[300px] p-4 border rounded focus:outline-none"
       />
       <div className="text-right text-xs text-gray-500 mt-1">Words: {wordCount} Chars: {charCount}</div>
     </div>
