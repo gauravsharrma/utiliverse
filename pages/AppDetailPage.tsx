@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useLocation } from 'react-router-dom';
 import { APPS_DATA } from '../constants.tsx';
 import { AppDefinition } from '../types.ts';
 import { useAuth } from '../hooks/useAuth.ts';
@@ -9,6 +9,8 @@ import NotFoundPage from './NotFoundPage.tsx';
 
 const AppDetailPage: React.FC = () => {
   const { appId } = useParams<{ appId: string }>();
+  const location = useLocation();
+  const bare = new URLSearchParams(location.search).get('bare') === '1';
   const [app, setApp] = useState<AppDefinition | null>(null);
   const { isSubscribed, subscribe } = useAuth();
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -29,6 +31,10 @@ const AppDetailPage: React.FC = () => {
     setIsModalOpen(true);
   };
   
+  if (bare) {
+    return <app.AppComponent />;
+  }
+
   return (
     <div className="max-w-4xl mx-auto">
       {isModalOpen && <SubscriptionModal onClose={() => setIsModalOpen(false)} />}
