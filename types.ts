@@ -4,6 +4,7 @@ import React from 'react';
 export enum AppCategory {
   Finance = 'Finance',
   Health = 'Health',
+  Productivity = 'Productivity',
 }
 
 export interface AppDefinition {

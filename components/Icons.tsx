@@ -54,3 +54,6 @@ export const ProductivityIcon: React.FC<{ className?: string }> = ({ className }
 export const SearchIcon: React.FC<{ className?: string }> = ({ className }) => (
     <svg className={className} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
 );
+export const ConverterIcon: React.FC<{ className?: string }> = ({ className }) => (
+  <svg className={className} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 2 5 6 1"/><line x1="2" y1="5" x2="22" y2="5"/><polyline points="18 15 22 19 18 23"/><line x1="22" y1="19" x2="2" y2="19"/></svg>
+);
