@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
 // types for drag items used in grid and sticky notes
 interface Item {
@@ -13,8 +14,15 @@ interface Item {
 type Mode = 'ruled' | 'simple' | 'grid' | 'blank' | 'code' | 'sticky' | 'reading';
 
 const MultiSurfaceNotebook: React.FC = () => {
+  const location = useLocation();
+  const startFull = new URLSearchParams(location.search).get('fullscreen') === '1';
   const [mode, setMode] = useState<Mode>('ruled');
-  const [fullScreen, setFullScreen] = useState(false);
+  const [fullScreen, setFullScreen] = useState(startFull);
+  const openInNewTab = () => {
+    const url = new URL(window.location.href);
+    url.searchParams.set('fullscreen', '1');
+    window.open(url.toString(), '_blank');
+  };
   return (
     <div className={fullScreen ? 'fixed inset-0 z-50 bg-white p-4 overflow-auto space-y-4' : 'space-y-4'}>
       <div className="flex flex-wrap gap-2 items-center">
@@ -25,7 +33,7 @@ const MultiSurfaceNotebook: React.FC = () => {
         <button onClick={() => setMode('code')} className={`px-3 py-1 rounded ${mode==='code'?'bg-indigo-600 text-white':'bg-gray-200'}`}>Code</button>
         <button onClick={() => setMode('sticky')} className={`px-3 py-1 rounded ${mode==='sticky'?'bg-indigo-600 text-white':'bg-gray-200'}`}>Sticky</button>
         <button onClick={() => setMode('reading')} className={`px-3 py-1 rounded ${mode==='reading'?'bg-indigo-600 text-white':'bg-gray-200'}`}>Read</button>
-        <button onClick={() => setFullScreen(f=>!f)} className="ml-auto px-3 py-1 border rounded">{fullScreen?'Exit':'Full Screen'}</button>
+        <button onClick={() => fullScreen ? setFullScreen(false) : openInNewTab()} className="ml-auto px-3 py-1 border rounded">{fullScreen?'Exit':'Full Screen'}</button>
       </div>
       {mode==='ruled' && <RuledNotebook/>}
       {mode==='simple' && <SimpleNotes/>}
