@@ -4,7 +4,8 @@ import EMICalculator from './apps/EMICalculator.tsx';
 import CompoundInterestCalculator from './apps/CompoundInterestCalculator.tsx';
 import UnitConverter from './apps/UnitConverter.tsx';
 import ResumeBuilder from './apps/ResumeBuilder.tsx';
-import { BmiIcon, EmiIcon, CompoundIcon, ConverterIcon, ResumeIcon } from './components/Icons.tsx';
+import { BmiIcon, EmiIcon, CompoundIcon, ConverterIcon, ResumeIcon, TextIcon } from './components/Icons.tsx';
+import TextToolkit from './apps/TextToolkit.tsx';
 
 export const APPS_DATA: AppDefinition[] = [
   {
@@ -56,5 +57,15 @@ export const APPS_DATA: AppDefinition[] = [
     isPremium: false,
     Icon: ResumeIcon,
     AppComponent: ResumeBuilder,
+  },
+  {
+    id: 'text-toolkit',
+    title: 'Text Toolkit',
+    category: AppCategory.Productivity,
+    description: 'Handy text manipulation utilities.',
+    longDescription: 'A collection of tools to clean up, transform, and analyze text directly in your browser.',
+    isPremium: false,
+    Icon: TextIcon,
+    AppComponent: TextToolkit,
   },
 ];
