@@ -22,7 +22,7 @@ export const APPS_DATA: AppDefinition[] = [
     category: AppCategory.Finance,
     description: 'Plan your loans with ease.',
     longDescription: 'The Equated Monthly Installment (EMI) calculator helps you understand your monthly loan payments. Whether it\'s for a car, home, or personal loan, this tool breaks down your payments into principal and interest components, giving you a clear picture of your financial commitment over time.',
-    isPremium: true,
+    isPremium: false,
     Icon: EmiIcon,
     AppComponent: EMICalculator,
   },
