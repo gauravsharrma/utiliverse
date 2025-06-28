@@ -3,7 +3,8 @@ import BMICalculator from './apps/BMICalculator.tsx';
 import EMICalculator from './apps/EMICalculator.tsx';
 import CompoundInterestCalculator from './apps/CompoundInterestCalculator.tsx';
 import UnitConverter from './apps/UnitConverter.tsx';
-import { BmiIcon, EmiIcon, CompoundIcon, ConverterIcon } from './components/Icons.tsx';
+import ResumeBuilder from './apps/ResumeBuilder.tsx';
+import { BmiIcon, EmiIcon, CompoundIcon, ConverterIcon, ResumeIcon } from './components/Icons.tsx';
 
 export const APPS_DATA: AppDefinition[] = [
   {
@@ -45,5 +46,15 @@ export const APPS_DATA: AppDefinition[] = [
     isPremium: false,
     Icon: ConverterIcon,
     AppComponent: UnitConverter,
+  },
+  {
+    id: 'resume-builder',
+    title: 'Resume Builder',
+    category: AppCategory.Productivity,
+    description: 'Create polished resumes and cover letters.',
+    longDescription: 'Craft professional resumes and cover letters with live previews, formatting options, and easy PDF export.',
+    isPremium: false,
+    Icon: ResumeIcon,
+    AppComponent: ResumeBuilder,
   },
 ];
