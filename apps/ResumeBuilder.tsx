@@ -95,13 +95,23 @@ const ResumeBuilder: React.FC = () => {
   }, [data]);
 
   const handleExport = async () => {
-    const module = await import(
-      'https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js'
-    );
-    const html2pdf = (module as any).default;
+    if (!(window as any).html2pdf) {
+      await new Promise<void>((resolve, reject) => {
+        const script = document.createElement('script');
+        script.src =
+          'https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js';
+        script.onload = () => resolve();
+        script.onerror = () => reject(new Error('Failed to load html2pdf'));
+        document.body.appendChild(script);
+      });
+    }
+
     const element = document.getElementById('resume-preview');
-    if (element) {
-      html2pdf(element);
+    const html2pdf = (window as any).html2pdf;
+    if (element && typeof html2pdf === 'function') {
+      html2pdf()
+        .from(element)
+        .save('resume.pdf');
     }
   };
 
