@@ -5,11 +5,10 @@ import CompoundInterestCalculator from './apps/CompoundInterestCalculator.tsx';
 import UnitConverter from './apps/UnitConverter.tsx';
 import ResumeBuilder from './apps/ResumeBuilder.tsx';
 
-import { BmiIcon, EmiIcon, CompoundIcon, ConverterIcon, ResumeIcon, TextIcon } from './components/Icons.tsx';
+import { BmiIcon, EmiIcon, CompoundIcon, ConverterIcon, ResumeIcon, TextIcon, PomodoroIcon, NoteIcon } from './components/Icons.tsx';
 import TextToolkit from './apps/TextToolkit.tsx';
-
-import { BmiIcon, EmiIcon, CompoundIcon, ConverterIcon, ResumeIcon, PomodoroIcon } from './components/Icons.tsx';
 import PomodoroTimer from './apps/PomodoroTimer.tsx';
+import MultiSurfaceNotebook from './apps/MultiSurfaceNotebook.tsx';
 
 
 export const APPS_DATA: AppDefinition[] = [
@@ -82,5 +81,15 @@ export const APPS_DATA: AppDefinition[] = [
     isPremium: false,
     Icon: PomodoroIcon,
     AppComponent: PomodoroTimer,
+  },
+  {
+    id: 'multi-surface-notebook',
+    title: 'Multi-Surface Notebook',
+    category: AppCategory.Productivity,
+    description: 'Take notes across multiple surfaces and formats.',
+    longDescription: 'A versatile note-taking app offering ruled, plain, grid, and other modes. Format text, sketch ideas, and export in various formats without any account.',
+    isPremium: false,
+    Icon: NoteIcon,
+    AppComponent: MultiSurfaceNotebook,
   }
 ];
