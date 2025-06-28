@@ -11,6 +11,7 @@ interface AppCardProps {
 const categoryColors: Record<AppCategory, string> = {
   [AppCategory.Finance]: 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300',
   [AppCategory.Health]: 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300',
+  [AppCategory.Productivity]: 'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-300',
 };
 
 const AppCard: React.FC<AppCardProps> = ({ app }) => {

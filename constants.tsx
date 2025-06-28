@@ -2,7 +2,8 @@ import { AppDefinition, AppCategory } from './types.ts';
 import BMICalculator from './apps/BMICalculator.tsx';
 import EMICalculator from './apps/EMICalculator.tsx';
 import CompoundInterestCalculator from './apps/CompoundInterestCalculator.tsx';
-import { BmiIcon, EmiIcon, CompoundIcon } from './components/Icons.tsx';
+import UnitConverter from './apps/UnitConverter.tsx';
+import { BmiIcon, EmiIcon, CompoundIcon, ConverterIcon } from './components/Icons.tsx';
 
 export const APPS_DATA: AppDefinition[] = [
   {
@@ -34,5 +35,15 @@ export const APPS_DATA: AppDefinition[] = [
     isPremium: false,
     Icon: CompoundIcon,
     AppComponent: CompoundInterestCalculator,
+  },
+  {
+    id: 'unit-converter',
+    title: 'Unit Converter',
+    category: AppCategory.Productivity,
+    description: 'Convert between various units easily.',
+    longDescription: 'A handy tool to convert values across length, weight, temperature and more. Select a category, choose units, and see results instantly.',
+    isPremium: false,
+    Icon: ConverterIcon,
+    AppComponent: UnitConverter,
   },
 ];
