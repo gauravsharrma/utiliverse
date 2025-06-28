@@ -110,8 +110,13 @@ const ResumeBuilder: React.FC = () => {
     const html2pdf = (window as any).html2pdf;
     if (element && typeof html2pdf === 'function') {
       html2pdf()
+        .set({
+          filename: 'resume.pdf',
+          html2canvas: { useCORS: true, scale: 2 },
+          jsPDF: { format: 'a4' },
+        })
         .from(element)
-        .save('resume.pdf');
+        .save();
     }
   };
 

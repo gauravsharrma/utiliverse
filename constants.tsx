@@ -4,8 +4,13 @@ import EMICalculator from './apps/EMICalculator.tsx';
 import CompoundInterestCalculator from './apps/CompoundInterestCalculator.tsx';
 import UnitConverter from './apps/UnitConverter.tsx';
 import ResumeBuilder from './apps/ResumeBuilder.tsx';
+
 import { BmiIcon, EmiIcon, CompoundIcon, ConverterIcon, ResumeIcon, TextIcon } from './components/Icons.tsx';
 import TextToolkit from './apps/TextToolkit.tsx';
+
+import { BmiIcon, EmiIcon, CompoundIcon, ConverterIcon, ResumeIcon, PomodoroIcon } from './components/Icons.tsx';
+import PomodoroTimer from './apps/PomodoroTimer.tsx';
+
 
 export const APPS_DATA: AppDefinition[] = [
   {
@@ -68,4 +73,14 @@ export const APPS_DATA: AppDefinition[] = [
     Icon: TextIcon,
     AppComponent: TextToolkit,
   },
+  {
+    id: 'pomodoro-timer',
+    title: 'Pomodoro Timer',
+    category: AppCategory.Productivity,
+    description: 'Boost focus with timed work sessions.',
+    longDescription: 'Stay productive using the classic Pomodoro technique. Track work and break intervals, customize durations, and monitor your daily streak.',
+    isPremium: false,
+    Icon: PomodoroIcon,
+    AppComponent: PomodoroTimer,
+  }
 ];
