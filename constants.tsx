@@ -1,7 +1,8 @@
 import { AppDefinition, AppCategory } from './types.ts';
 import BMICalculator from './apps/BMICalculator.tsx';
 import EMICalculator from './apps/EMICalculator.tsx';
-import { BmiIcon, EmiIcon } from './components/Icons.tsx';
+import CompoundInterestCalculator from './apps/CompoundInterestCalculator.tsx';
+import { BmiIcon, EmiIcon, CompoundIcon } from './components/Icons.tsx';
 
 export const APPS_DATA: AppDefinition[] = [
   {
@@ -23,5 +24,15 @@ export const APPS_DATA: AppDefinition[] = [
     isPremium: true,
     Icon: EmiIcon,
     AppComponent: EMICalculator,
+  },
+  {
+    id: 'compound-interest-calculator',
+    title: 'Compound Interest',
+    category: AppCategory.Finance,
+    description: 'Estimate growth with compounding.',
+    longDescription: 'Quickly calculate how your investments grow over time with regular compounding. Adjust interest rate, compounding frequency, and duration to see future value and total interest earned.',
+    isPremium: false,
+    Icon: CompoundIcon,
+    AppComponent: CompoundInterestCalculator,
   },
 ];
