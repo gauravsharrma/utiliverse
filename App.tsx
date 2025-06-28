@@ -10,13 +10,15 @@ import DashboardPage from './pages/DashboardPage.tsx';
 import NotFoundPage from './pages/NotFoundPage.tsx';
 
 function App() {
+  const params = new URLSearchParams(window.location.search);
+  const bare = params.get('bare') === '1';
   return (
     <ThemeProvider>
       <AuthProvider>
         <HashRouter>
           <div className="flex flex-col min-h-screen bg-white dark:bg-black text-gray-900 dark:text-gray-100 font-sans transition-colors duration-300">
-            <Header />
-            <main className="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            {!bare && <Header />}
+            <main className={bare ? 'flex-grow p-0 m-0' : 'flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-8'}>
               <Routes>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/app/:appId" element={<AppDetailPage />} />
@@ -24,7 +26,7 @@ function App() {
                 <Route path="*" element={<NotFoundPage />} />
               </Routes>
             </main>
-            <Footer />
+            {!bare && <Footer />}
           </div>
         </HashRouter>
       </AuthProvider>

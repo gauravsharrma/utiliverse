@@ -20,7 +20,8 @@ const MultiSurfaceNotebook: React.FC = () => {
   const [fullScreen, setFullScreen] = useState(startFull);
   const openInNewTab = () => {
     const url = new URL(window.location.href);
-    url.searchParams.set('fullscreen', '1');
+    url.searchParams.set('bare', '1');
+    url.hash = '#/app/multi-surface-notebook?fullscreen=1';
     window.open(url.toString(), '_blank');
   };
   return (
